@@ -38,7 +38,6 @@
 
 
 
-
 // function fibanocci(n){
 //     const fib = [0,1]
 //     for(let i=2;i<n;i++){
@@ -50,6 +49,22 @@
 // console.log(fibanocci(8));
 // console.log(fibanocci(3));
 
+
+// function fib(n){
+//     if(n<=1){
+//         return n
+//     }
+//     let prev=0
+//     let curr=1
+//     for(let i=2;i<=n;i++){
+//         let next = prev+curr
+//         prev = curr
+//         curr = next
+        
+//     }
+//     return curr
+// }
+// console.log(fib(6))
 
 
 //factorial
@@ -107,20 +122,30 @@
 //O(sqrt(n))T
 
 
-
-//poxwer of two
+//poxwer of two-btute force
 // function isPower(n){
-//     if(n%2==0){
-//         return true
-//     }else{
+//     if(n<1){
 //         return false
 //     }
+//     while(n>1){
+//         if(n%2!=0){
+//             return false
+//         }
+//         n=n/2
+//     }
+//     return true
 // }
-// console.log(isPower(8));//2 raised to 3==6
+// console.log(isPower(10))
+
+
+//bitwise trick to find pwer of two - a power of two has excatly one 1 in its binary representation
+// function isPower(n){
+//     return n>0 && (n&(n-1))===0
+// }
+// console.log(isPower(1))
 
 
 //fibanocci using recursion
-
 // function fibanocci(n){
 //     if(n<2){
 //         return n
@@ -128,7 +153,7 @@
 //     }
 //     return fibanocci(n-1)+fibanocci(n-2)
 // }
-// console.log(fibanocci(3));
+// console.log(fibanocci(5));
 // O(2^n)T - RECURSIVE
 //O(n)T - iterative
 
@@ -144,7 +169,7 @@
 
 //BIG O =O(n)T
 
-
+  
 
 //linear search
 // function linearSearch(arr,target){
@@ -167,8 +192,7 @@
 
 // function binarySearch(arr,target){
 //     let leftIndex = 0;
-//     let rightIndex = arr.length-1
-
+//     let rightIndex = arr.length-1 
 //     while(leftIndex<=rightIndex){
 //         let middleIndex = Math.floor((leftIndex + rightIndex) /2)
 //         if(target === arr[middleIndex]){
@@ -199,7 +223,7 @@
 //     let middleIndex =Math.floor( (leftIndex +rightIndex)/2)
 //     if(target ===arr[middleIndex]){
 //         return middleIndex
-//     }
+//     }                        
 //     if(target>arr[middleIndex]){
 //         return search(arr,target,middleIndex+1,rightIndex)
 //     }else{
@@ -316,7 +340,7 @@
 // list.addToEnd(1);
 // list.addToEnd(2);
 
-// list.print()
+// list.print()    
 
 //insert an elemnt in middle
 
@@ -491,7 +515,7 @@
 // list.print()
 
 
-//REMOVE NODE WITH A GIVEN VALUE
+//REMOVE NODE WITH A GIVEN VALUE(deleting only first node with that value)
 
 // class Node{
 //     constructor(data){
@@ -562,6 +586,69 @@
 
 // list.removeNodeValue(10);
 // list.print()
+
+
+//delwting all nodes with given value
+// class Node{
+//     constructor(data){
+//         this.data = data
+//         this.next = null
+//     }
+// }
+// class LinkedList{
+//     constructor(){
+//         this.head = null
+//     }
+//     insert(data){
+//         const node = new Node(data)
+//         if(!this.head){
+//             this.head = node
+//         }else{
+//             let curr = this.head
+//             while(curr.next){
+//                 curr = curr.next
+//             }
+//             curr.next=node
+//         }
+//     }
+//     print(){
+//         let curr = this.head
+//         while(curr){
+//             console.log(curr.data)
+//             curr = curr.next
+//         }
+//     }
+//     remove(data){
+//         while(this.head){
+//             if(this.head.data==data){
+//                 this.head.next = this.head.next.next
+//             }else{
+//                 break
+//             }
+//         }
+//         let curr = this.head
+//         while(curr && curr.next){
+//             if(curr.next.data==data){
+//                 curr.next = curr.next.next
+//             }else{
+//                 curr = curr.next
+//             }
+//         }
+//     }
+// }
+// const list  = new LinkedList()
+// list.insert(1)
+// list.insert(2)
+// list.insert(3)
+// list.insert(3)
+// list.insert(3)
+// list.insert(4)
+// list.insert(1)
+// list.print()
+// list.remove(3)
+// list.print()
+
+
 
 
 //search if avlue exist in the list and return i 
@@ -720,6 +807,7 @@
 //         this.size = 0
 //     }
 //     prepend(data){
+
 //         const node  = new Node(data)
 //         if(this.head===null){
 //             this.head = node
@@ -815,7 +903,7 @@
 //     }
 //     prepend(data){
 //         const node  = new Node(data)
-//         if(this.head===null){
+//         if(this.head===null){    
 //             this.head = node
 //             this.tail = node;
 //         }else{
@@ -847,6 +935,9 @@
             
 
 //         }else{
+
+
+
             
 //             this.head = this.head.next
 //             this.head.prev = null
@@ -1050,6 +1141,52 @@
 // list.print()
 
 
+//removing duplicates from sorted list
+// class Node{
+//     constructor(value){
+//         this.value = value
+//         this.next = null
+//     }
+// }
+// class LinkedList{
+//     constructor(){
+//         this.head = null
+//     }
+//     insert(value){
+//         const node = new Node(value)
+//         if(!this.head){
+//             this.head = node
+//         }else{
+//             node.next = this.head
+//             this.head = node
+//         }
+//     }
+//     remove(){
+//         let curr = this.head
+//         while(curr && curr.next){
+//             if(curr.value === curr.next.value){
+//                 curr.next = curr.next.next
+//             }else{
+//                 curr = curr.next
+//             }
+//         }
+//     }
+//     print(){
+//         let curr = this.head
+//         while(curr){
+//             console.log(curr.value)
+//             curr = curr.next
+//         }
+//     }
+// }
+// const list  =new LinkedList()
+// list.insert(1)
+// list.insert(1)
+// list.insert(2)
+// list.insert(2)
+// list.remove()
+// list.print()
+
 
 //sum of array using recursion
 
@@ -1099,68 +1236,392 @@
 // }
 // console.log(revrese("hello"));
 
+//removing even
+// const a=[1,2,3,4,5]
+// let b = a.filter((num)=>num%2!=0)
+// console.log(b)
+
+
+//find middel using two point approach 
+// class Node {
+//     constructor(value){
+//         this.value = value
+//         this.next = null
+//     }
+// }
+// class LinkedLIst{
+//     constructor(){
+//         this.head = null
+//     }
+//     append(value){
+//         const node  = new Node(value)
+//         if(!this.head){
+//             this.head  = node
+//         }else{
+//             let current = this.head
+//             while(current.next){
+//                 current = current.next
+//             }
+//             current.next = node
+//         }
+
+//     }
+//     findMiddle(){
+//         let slow = this.head
+//         let fast = this.head
+
+//         while(fast&&fast.next){
+//             slow = slow.next
+//             fast = fast.next.next
+
+//         }
+//         return slow?slow.value:null
+//     }
+
+//     print(){
+//         let curr = this.head
+//         while(curr){
+//             console.log(curr.value)
+//             curr = curr.next
+//         }
+//     }
+// }
+// const list = new LinkedLIst()
+// list.append(1)
+// list.append(2)
+// list.append(3)
+// list.append(4)
+
+// list.print()
+// console.log(list.findMiddle())
 
 
 
 
-class Node {
-    constructor(data){
-        this.data= data
-        this.next = null
-    }
-}
-class LinkedList{
-    constructor(){
-        this.head = null
-        this.size=0
-    }
-    append(data){
-        const node = new Node(data);
-        if(this.head===0){
-            this.head = node
-        }else{
-            let prev = this.head
-            while(prev.next){
-                prev = prev.next
-            }
+// class Node {
+//     constructor(value){
+//         this.value = value
+//         this.next = null
+//     }
+// }
+// class LinkedLIst{
+//     constructor(){
+//         this.head = null
+//     }
+//     append(value){
+//         const node  = new Node(value)
+//         if(!this.head){
+//             this.head  = node
+//         }else{
+//             let current = this.head
+//             while(current.next){
+//                 current = current.next
+//             }
+//             current.next = node
+//         }
 
-            prev.next = node
-        }
-        this.size++
-
-    }
-   
-    removeMiddle(){
-        let size = this.size/2
-        let removeNode
-
-        let current = this.head
-        while(current.next){
+//     }
+//     findMiddle(){
+//         let count=0
+//         let curr=this.head
+//         while(curr){
+//             count++
+//             curr = curr.next
+//         }
+//         let middle = Math.floor(count/2)
+//         curr = this.head
+//         for(let i=0;i<middle;i++){
+//             curr = curr.next
             
+//         }
+//         return curr?curr.value:null
+//     }
 
-        }
+//     print(){
+//         let curr = this.head
+//         while(curr){
+//             console.log(curr.value)
+//             curr = curr.next
+//         }
+//     }
+// }
+// const list = new LinkedLIst()
+// list.append(1)
+// list.append(2)
+// list.append(3)
 
-        
-        l
-        
+// list.print()
+// console.log(list.findMiddle())
 
-    }
-    print(){
-        let current = this.head
-        while(current){
-            console.log(current.data);
-            current = current.next
-            
-        }
-    }
+
+//remove middle
+
+
+// class Node {
+//     constructor(value){
+//         this.value = value
+//         this.next = null
+//     }
+// }
+// class LinkedLIst{
+//     constructor(){
+//         this.head = null
+//     }
+//     append(value){
+//         const node  = new Node(value)
+//         if(!this.head){
+//             this.head  = node
+//         }else{
+//             let current = this.head
+//             while(current.next){
+//                 current = current.next
+//             }
+//             current.next = node
+//         }
+
+//     }
+//    removeMiddle(){
+//     if(!this.head||!this.head.next){
+//         return null
+//     }else{
+//         let slow = this.head
+//         let fast = this.head
+//         let prev = null
+
+//         while(fast&&fast.next){
+//             prev= slow
+//             slow = slow.next
+//             fast = fast.next.next
+//         }
+//         prev.next = slow.next
+//     }
   
-}
-const list = new LinkedList
-list.append(1);
-list.append(2)
-list.append(3)
-list.print()
+//    }
+
+//     print(){
+//         let curr = this.head
+//         while(curr){
+//             console.log(curr.value)
+//             curr = curr.next
+//         }
+//     }
+// }
+// const list = new LinkedLIst()
+// list.append(1)
+// list.append(2)
+// list.append(3)
+// list.append(4)
+// list.append(5)
+
+
+// list.print()
+// list.removeMiddle()
+// list.print()
 
 
 
 
+//check ll is pallindrome
+
+// class Node{
+//     constructor(value){
+//         this.value = value
+//         this.next = null
+//     }
+
+// }
+// class LinkedList{
+//     constructor(){
+//         this.head = null
+//     }
+//     append(value){
+//         const node = new Node(value)
+//         if(!this.head){
+//             this.head = node
+//             return
+//         }
+//         let curr = this.head
+//         while(curr.next){
+//             curr = curr.next
+//         }
+//         curr.next = node
+//     }
+//     isPallindrome(){
+//         const values=[]
+//         let curr = this.head
+
+//         while(curr){
+//             values.push(curr.value)
+//             curr = curr.next
+//         }
+
+//         for(let i=0,j=values.length-1;i<values.length/2;i++,j--){
+//             if(values[i]!==values[j]){
+//                 return false
+//             }
+//         }
+//         return true
+//     }
+// }
+// const ll = new LinkedList()
+// ll.append(1)
+// ll.append(2)
+// ll.append(1)
+// console.log(ll.isPallindrome())
+
+
+//ckeck pallindrome another approach
+// var isPalindrome = function(head) {
+//     let str = '';
+//     let current = head;
+
+//     while (current) {
+//         str += current.val;
+//         current = current.next;
+//     }
+
+//     return str === str.split('').reverse().join('');
+// };
+
+
+
+// class Node{
+//     constructor(data){
+//         this.data = data
+//         this.next = null
+//     }
+// }
+// class LinkedList{
+//     constructor(){
+//         this.head = null
+//         this.size=0
+//     }
+//     append(data){
+//         const node = new Node(data)
+//         if(!this.head){
+//             this.head = node
+//         }else{
+//             let curr = this.head
+//             while(curr.next){
+//                 curr = curr.next
+//             }
+//             curr.next = node
+//         }
+//         this.size++
+
+//     }
+    
+//     print(){
+//         let cur = this.head
+//         while(cur){
+//             console.log(cur.data); 
+//         cur = cur.next
+            
+//         }
+//     }
+
+// }
+// const list = new LinkedList()
+// list.append(1)
+// list.append(2)
+// list.append(3)
+// list.append(3)
+// list.append(5)
+// list.print()
+
+
+//merge snd sort  two unsorted lists
+// class Node{
+//     constructor(data){
+//         this.data = data
+//         this.next = null
+//     }
+// }
+// class LinkedList{
+//     constructor(){
+//         this.head = null
+//     }
+//     insert(data){
+//         const node = new Node(data)
+//         if(!this.head){
+//             this.head = node
+//         }else{
+//             let curr = this.head
+//             while(curr.next){
+//                 curr = curr.next
+//             }
+//             curr.next = node
+//         }
+//     }
+//     print(){
+//         let curr  = this.head
+//         while(curr){
+//             console.log(curr.data)
+//             curr = curr.next
+//         }
+//     }
+// }
+// let l1 = new LinkedList()
+// let l2  = new LinkedList()
+// l1.insert(1)
+// l1.insert(2)
+// l1.insert(6)
+// l2.insert(3)
+// l2.insert(10)
+// l2.insert(5)
+
+// function mergeandsort(l1,l2){
+//     if(!l1.head)return l2
+//     if(!l2.head)return l1
+    
+//     let curr = l1.head
+//     while(curr.next){
+//         curr = curr.next
+//     }
+//     curr.next = l2.head
+    
+//     //for sorting we can use bubble sort
+    
+//     let swapped
+//     do{
+//         swapped =false
+//         let curr = l1.head
+//         while(curr && curr.next){
+//             if(curr.data>curr.next.data){
+//                 let temp = curr.data
+//                 curr.data = curr.next.data
+//                 curr.next.data = temp
+//                 swapped= true
+//             }
+//             curr = curr.next
+//         }
+//     }
+//     while(swapped)
+    
+// }
+// mergeandsort(l1,l2)
+// l1.print()
+
+
+//function to sort a single list
+
+// function sort(l1){
+//     let swapped
+//     do{
+//         swapped =false
+//         let curr = l1.head
+//         while(curr && curr.next){
+//             if(curr.data>curr.next.data){
+//                 let temp = curr.data
+//                 curr.data = curr.next.data
+//                 curr.next.data = temp
+//                 swapped= true
+//             }
+//             curr = curr.next
+//         }
+//     }
+//     while(swapped)
+    
+// }
+// sort(l1)
+// l1.print()
